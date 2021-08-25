@@ -45,7 +45,7 @@ constexpr auto SERIAL_DATABITS { CSIZE & CS8 };
 constexpr auto SERIAL_PARITY { ~(PARENB | PARODD) };
 
 /* Serial port speed, in baud.  See termios.h. */
-constexpr speed_t SERIAL_SPEED { B115200 };
+constexpr speed_t SERIAL_SPEED { B9600 };
 
 /* 1 stop bit */
 constexpr auto SERIAL_STOPBITS { ~CSTOPB };
