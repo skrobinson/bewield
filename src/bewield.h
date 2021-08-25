@@ -17,3 +17,12 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
+
+#include <string>
+
+
+// default serial port
+const std::string DEFAULT_DEVICE { "/dev/ttyUSB0" };
+
+/* Carriage Return byte used as leading and trailing value. */
+constexpr char CR { 0x10 };
