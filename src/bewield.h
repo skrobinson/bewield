@@ -25,4 +25,4 @@
 const std::string DEFAULT_DEVICE { "/dev/ttyUSB0" };
 
 /* Carriage Return byte used as leading and trailing value. */
-constexpr char CR { 0x10 };
+constexpr char CR { 0x0d };
