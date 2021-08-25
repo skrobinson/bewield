@@ -33,7 +33,17 @@ VPATH := src
 
 .DELETE_ON_ERROR:
 
-.PHONY: clean help realclean
+.PHONY: bewield clean help realclean
+
+$(BIN)/bewield: private LDFLAGS += $(LIB)/lineal.o
+
+$(BIN)/bewield: bewield.cpp bewield.h $(INC)/argparse.hpp $(LIB)/lineal.o
+	$(CC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) $< -o $@
+
+$(LIB)/%.o: %.cpp %.h
+	$(CC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -c $< -o $@
+
+bewield: $(BIN)/bewield
 
 clean:
 	$(RM) $(BIN)/*
@@ -41,6 +51,7 @@ clean:
 
 help:
 	@echo "bewield make targets:"
+	@echo "  bewield - build bewield"
 	@echo "  clean - remove ephemeral generated files (e.g. *.o)"
 	@echo "  help - show this help message"
 	@echo "  realclean - remove all generated files"
