@@ -61,6 +61,8 @@ Lineal::Lineal(std::string serial_name)
     // Set saint's serial port configuration to match cecil.
     flags.c_cflag |= (flags.c_cflag & SERIAL_DATABITS);
     flags.c_cflag &= SERIAL_PARITY & SERIAL_STOPBITS;
+    // Disable hardware flow control.
+    flags.c_cflag &= ~CRTSCTS;
     // Use noncanonical mode to avoid waiting for newline.
     flags.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG);
     // Set non-blocking access with 10 decisecond (1 sec) timeout.
