@@ -20,3 +20,13 @@
 BIN := bin
 INC := include
 LIB := lib
+
+CC := g++
+CPPFLAGS := -I$(INC)
+CXXFLAGS := -g -Wall -std=c++17 -fext-numeric-literals
+LDFLAGS :=
+
+# Makefile helpers
+VPATH := src
+
+.DELETE_ON_ERROR:
