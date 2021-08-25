@@ -29,4 +29,21 @@ LDFLAGS :=
 # Makefile helpers
 VPATH := src
 
+.DEFAULT_GOAL := help
+
 .DELETE_ON_ERROR:
+
+.PHONY: clean help realclean
+
+clean:
+	$(RM) $(BIN)/*
+	$(RM) -r $(LIB)/build
+
+help:
+	@echo "bewield make targets:"
+	@echo "  clean - remove ephemeral generated files (e.g. *.o)"
+	@echo "  help - show this help message"
+	@echo "  realclean - remove all generated files"
+
+realclean: clean
+	$(RM) -r $(LIB)/*.{d,o}
