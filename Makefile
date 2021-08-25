@@ -38,7 +38,7 @@ VPATH := src
 $(BIN)/bewield: private LDFLAGS += $(LIB)/lineal.o
 
 $(BIN)/bewield: bewield.cpp bewield.h $(INC)/argparse.hpp $(LIB)/lineal.o
-	$(CC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) $< -o $@
+	$(CC) -static $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) $< -o $@
 
 $(LIB)/%.o: %.cpp %.h
 	$(CC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -c $< -o $@
