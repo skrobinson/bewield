@@ -35,6 +35,10 @@
 argparse::ArgumentParser read_args(const std::vector<std::string> arguments) {
     argparse::ArgumentParser program { "bewield" };
 
+    program.add_argument("command")
+        .default_value(std::string { "query_model" })
+        .help("projector command");
+
     program.add_argument("-p", "--port")
         .help("serial port")
         .default_value(DEFAULT_DEVICE);
@@ -62,6 +66,8 @@ int main(int argc, const char* argv[]) {
         return EINVAL;
     }
 
+
+    auto arg_cmd { program.get("command") };
     auto arg_port { program.get("--port") };
     auto arg_verbose { program.get<bool>("--verbose") };
 
