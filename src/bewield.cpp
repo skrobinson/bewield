@@ -23,7 +23,10 @@
 
 #include "argparse.hpp"
 
+#include <algorithm>
 #include <cstdlib>
+#include <string>
+#include <vector>
 
 
 /* Returns an ArgumentParser object created from command line arguments. */
@@ -38,6 +41,15 @@ argparse::ArgumentParser read_args(const std::vector<std::string> arguments) {
 
 int main(int argc, const char* argv[]) {
     argparse::ArgumentParser program;
+    try {
+        std::vector<std::string> args;
+        std::copy(argv, argv + argc, std::back_inserter(args));
+
+        program = read_args(args);
+    } catch ( const std::runtime_error &e ) {
+        std::cout << e.what() << std::endl;
+        return EINVAL;
+    }
 
     return EXIT_SUCCESS;
 }
