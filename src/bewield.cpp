@@ -26,6 +26,18 @@
 #include <cstdlib>
 
 
+/* Returns an ArgumentParser object created from command line arguments. */
+argparse::ArgumentParser read_args(const std::vector<std::string> arguments) {
+    argparse::ArgumentParser program { "bewield" };
+
+    program.parse_args(arguments);
+
+    return program;
+}
+
+
 int main(int argc, const char* argv[]) {
+    argparse::ArgumentParser program;
+
     return EXIT_SUCCESS;
 }
