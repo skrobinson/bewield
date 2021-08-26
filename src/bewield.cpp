@@ -33,6 +33,11 @@
 argparse::ArgumentParser read_args(const std::vector<std::string> arguments) {
     argparse::ArgumentParser program { "bewield" };
 
+    program.add_argument("--verbose")
+        .help("show detailed status")
+        .default_value(false)
+        .implicit_value(true);
+
     program.parse_args(arguments);
 
     return program;
@@ -50,6 +55,8 @@ int main(int argc, const char* argv[]) {
         std::cout << e.what() << std::endl;
         return EINVAL;
     }
+
+    auto arg_verbose { program.get<bool>("--verbose") };
 
     return EXIT_SUCCESS;
 }
