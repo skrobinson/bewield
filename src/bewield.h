@@ -18,7 +18,18 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+#include <map>
 #include <string>
+#include <utility>
+
+
+/* Map UI command string to protocol message. */
+std::map<const std::string, const std::string> commands {
+    std::make_pair("power_off", "pow=off"),
+    std::make_pair("power_on", "pow=on"),
+
+    std::make_pair("query_model", "modelname=?"),
+};
 
 
 /* Carriage Return byte used as leading and trailing value. */
