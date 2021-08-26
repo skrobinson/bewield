@@ -25,6 +25,8 @@
 
 #include <algorithm>
 #include <cstdlib>
+#include <iostream>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -32,6 +34,10 @@
 /* Returns an ArgumentParser object created from command line arguments. */
 argparse::ArgumentParser read_args(const std::vector<std::string> arguments) {
     argparse::ArgumentParser program { "bewield" };
+
+    program.add_argument("-p", "--port")
+        .help("serial port")
+        .default_value(DEFAULT_DEVICE);
 
     program.add_argument("--verbose")
         .help("show detailed status")
@@ -56,7 +62,24 @@ int main(int argc, const char* argv[]) {
         return EINVAL;
     }
 
+    auto arg_port { program.get("--port") };
     auto arg_verbose { program.get<bool>("--verbose") };
+
+    if ( arg_verbose ) {
+        std::cout << "opening " << arg_port << std::endl;
+    }
+
+    std::unique_ptr<Lineal> serial;
+    try {
+        serial = std::make_unique<Lineal>(arg_port);
+    } catch ( const std::system_error &e ) {
+        std::cout << e.what() << std::endl;
+        return EINVAL;
+    }
+
+    if ( arg_verbose ) {
+        std::cout << arg_port << " ready" << std::endl;
+    }
 
     return EXIT_SUCCESS;
 }
