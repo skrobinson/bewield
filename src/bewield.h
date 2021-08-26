@@ -24,6 +24,10 @@
 /* Carriage Return byte used as leading and trailing value. */
 constexpr char CR { 0x0d };
 
+/* The two following characters delimit the bounds of a serial message. */
+const std::string PREFIX { '*' };
+const std::string SUFFIX { '#' };
+
 // default serial port
 const std::string DEFAULT_DEVICE { "/dev/ttyUSB0" };
 
