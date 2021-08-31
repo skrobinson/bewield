@@ -28,6 +28,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <termios.h>
 #include <vector>
 
 
@@ -98,6 +99,9 @@ int main(int argc, const char* argv[]) {
     if ( arg_verbose ) {
         std::cout << arg_port << " ready" << std::endl;
     }
+
+    // Flush erroneous, pending IO before continuing.
+    tcflush(serial->fd(), TCIOFLUSH);
 
     return EXIT_SUCCESS;
 }
