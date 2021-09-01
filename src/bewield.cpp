@@ -68,7 +68,12 @@ int main(int argc, const char* argv[]) {
 
         program = read_args(args);
     } catch ( const std::runtime_error &e ) {
-        std::cout << e.what() << std::endl;
+        std::string err_msg { e.what() };
+        if ( err_msg.find("Maximum number of positional", 0) == 0 ) {
+            std::cout << "Only one command at a time supported." << std::endl;
+        } else {
+            std::cout << err_msg << std::endl;
+        }
         return EINVAL;
     }
 
