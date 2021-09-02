@@ -34,6 +34,8 @@
  * `--list-commands`, so keep to alphabetic order by pair.first.
  */
 std::map<const std::string, const std::string> commands {
+    std::make_pair("audio_mute_off", "mute=off"),
+    std::make_pair("audio_mute_on", "mute=on"),
     std::make_pair("audio_vol_down", "vol=-"),
     std::make_pair("audio_vol_up", "vol=+"),
 
@@ -43,6 +45,7 @@ std::map<const std::string, const std::string> commands {
     std::make_pair("power_off", "pow=off"),
     std::make_pair("power_on", "pow=on"),
 
+    std::make_pair("query_audio_mute", "mute=?"),
     std::make_pair("query_audio_volume", "vol=?"),
     std::make_pair("query_blank", "blank=?"),
     std::make_pair("query_model", "modelname=?"),
