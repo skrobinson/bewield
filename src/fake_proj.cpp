@@ -22,6 +22,8 @@
 #include "lineal.h"
 
 #include <map>
+#include <memory>
+#include <termios.h>
 #include <utility>
 
 
@@ -35,6 +37,22 @@ std::map<const std::string, const std::string> responses {
 };
 
 
+/* Constants to change runtime behavior. */
+const std::string port { "port_b" };
+
+
 int main(int argc, const char* argv[]) {
+
+    std::unique_ptr<Lineal> serial;
+    try {
+        serial = std::make_unique<Lineal>(port);
+    } catch ( const std::system_error &e ) {
+        std::cout << e.what() << std::endl;
+        return EINVAL;
+    }
+
+    // Flush erroneous, pending IO before continuing.
+    tcflush(serial->fd(), TCIOFLUSH);
+
     return EXIT_SUCCESS;
 }
