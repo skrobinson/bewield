@@ -32,6 +32,58 @@
 #include <vector>
 
 
+/* Returns a projector message.  These are always feedback for the latest sent
+ * serial remote command.
+ *
+ * Throws `std::runtime_error` for various errors and warnings reported by the
+ * projector.
+ */
+const std::string recv(Lineal &device) {
+    std::string response;
+    bool response_complete { false };
+
+    char buffer[ 32 ];
+
+    while ( ! response_complete ) {
+        auto ret { device.readBytes(buffer, sizeof(buffer)) };
+        if ( ret < 0 ) {
+            throw std::runtime_error("Fatal error while reading from projector.");
+        }
+        response.append(buffer, ret);
+        response_complete = std::count(response.begin(), response.end(), SUFFIX.back()) == 2;
+    }
+
+    auto start { response.rfind(PREFIX, std::string::npos) + 1 };
+    auto end { response.rfind(SUFFIX, std::string::npos) };
+    auto r { response.substr(start, end-start) };
+
+    if ( r == "Block item" ) {
+        throw std::runtime_error("Command not currently available, try again.");
+    } else if ( r == "Unsupported item" ) {
+        throw std::runtime_error("Command not supported.");
+    } else if ( r == "Illegal format" ) {
+        throw std::runtime_error("Incorrect command format.");
+    }
+
+    return r;
+}
+
+
+/* Sends a message to the projector and returns the quantity of sent bytes. */
+std::size_t send(Lineal &device, const std::string cmd) {
+    // Build a message from necessary parts.
+    const std::string msg { CR + PREFIX + commands.at(cmd) + SUFFIX + CR };
+
+    auto ret { device.write(msg.c_str(), msg.length()) };
+    if ( ret < 0 ) {
+        throw std::runtime_error("Fatal error while writing to projector.");
+    }
+    std::cout << "sent '" << cmd << "'" << std::endl;
+
+    return ret;
+}
+
+
 /* Returns an ArgumentParser object created from command line arguments. */
 argparse::ArgumentParser read_args(const std::vector<std::string> arguments) {
     argparse::ArgumentParser program { "bewield" };
@@ -107,6 +159,20 @@ int main(int argc, const char* argv[]) {
 
     // Flush erroneous, pending IO before continuing.
     tcflush(serial->fd(), TCIOFLUSH);
+
+    std::string reply;
+    try {
+        send(*serial, arg_cmd);
+        reply = recv(*serial);
+    } catch ( const std::out_of_range &e ) {
+        std::cout << "Unrecognized command." << std::endl;
+        return EINVAL;
+    } catch ( const std::runtime_error &e ) {
+        std::cout << e.what() << std::endl;
+        return EAGAIN;
+    }
+
+    std::cout << "reply: " << cook(reply) << std::endl;
 
     return EXIT_SUCCESS;
 }
