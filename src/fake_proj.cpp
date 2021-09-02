@@ -33,6 +33,9 @@
 
 /* Map UI protocol command message to response message. */
 std::map<const std::string, const std::string> responses {
+    std::make_pair("audiosour=hdmi", "AUDIOSOUR=HDMI"),
+    std::make_pair("audiosour=hdmi2", "AUDIOSOUR=HDMI2"),
+
     std::make_pair("mute=off", "MUTE=OFF"),
     std::make_pair("mute=on", "MUTE=ON"),
     std::make_pair("vol=-", "VOL=-"),
@@ -45,6 +48,7 @@ std::map<const std::string, const std::string> responses {
     std::make_pair("pow=on", "Block item"),  // error return
 
     // query
+    std::make_pair("audiosour=?", "AUDIOSOUR=HDMI"),
     std::make_pair("mute=?", "MUTE=WHAT"),
     std::make_pair("vol=?", "VOL=0"),
     std::make_pair("blank=?", "BLANK=OFF"),
