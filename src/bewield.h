@@ -34,12 +34,16 @@
  * `--list-commands`, so keep to alphabetic order by pair.first.
  */
 std::map<const std::string, const std::string> commands {
+    std::make_pair("audio_vol_down", "vol=-"),
+    std::make_pair("audio_vol_up", "vol=+"),
+
     std::make_pair("blank_off", "blank=off"),
     std::make_pair("blank_on", "blank=on"),
 
     std::make_pair("power_off", "pow=off"),
     std::make_pair("power_on", "pow=on"),
 
+    std::make_pair("query_audio_volume", "vol=?"),
     std::make_pair("query_blank", "blank=?"),
     std::make_pair("query_model", "modelname=?"),
     std::make_pair("query_power", "pow=?"),
