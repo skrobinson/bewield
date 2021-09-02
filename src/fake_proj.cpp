@@ -20,3 +20,8 @@
 
 #include "bewield.h"
 #include "lineal.h"
+
+
+int main(int argc, const char* argv[]) {
+    return EXIT_SUCCESS;
+}
