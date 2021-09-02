@@ -39,12 +39,17 @@ VPATH := src
 
 .DELETE_ON_ERROR:
 
-.PHONY: bewield clean help realclean serial-pipe
+.PHONY: bewield clean fake_proj help realclean serial-pipe
 
 $(BIN)/bewield: private LDFLAGS += $(LIB)/lineal.o
 
 $(BIN)/bewield: bewield.cpp bewield.h $(INC)/argparse.hpp $(LIB)/lineal.o
 	$(CC) -static $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) $< -o $@
+
+$(BIN)/fake_proj: private LDFLAGS += $(LIB)/lineal.o
+
+$(BIN)/fake_proj: fake_proj.cpp $(LIB)/lineal.o
+	$(CC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) $< -o $@
 
 $(LIB)/%.o: %.cpp %.h
 	$(CC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) -c $< -o $@
@@ -55,10 +60,13 @@ clean:
 	$(RM) $(BIN)/*
 	$(RM) -r $(LIB)/build
 
+fake_proj: $(BIN)/fake_proj
+
 help:
 	@echo "bewield make targets:"
 	@echo "  bewield - build bewield"
 	@echo "  clean - remove ephemeral generated files (e.g. *.o)"
+	@echo "  fake_proj - build test helper"
 	@echo "  help - show this help message"
 	@echo "  realclean - remove all generated files"
 	@echo "  serial-pipe - create linked virtual serial ports for testing"
