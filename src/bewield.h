@@ -22,6 +22,7 @@
 #ifndef BEWIELD_H
 #define BEWIELD_H true
 
+#include <algorithm>
 #include <map>
 #include <string>
 #include <utility>
@@ -45,5 +46,13 @@ const std::string SUFFIX { '#' };
 
 // default serial port
 const std::string DEFAULT_DEVICE { "/dev/ttyUSB0" };
+
+
+/* Returns a new string with carriage returns placed with new-lines.  */
+const std::string cook(const std::string msg) {
+    auto slate { msg.substr() };
+    std::replace(slate.begin(), slate.end(), '\r', '\n');
+    return slate;
+}
 
 #endif
