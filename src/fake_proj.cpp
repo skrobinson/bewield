@@ -33,10 +33,14 @@
 
 /* Map UI protocol command message to response message. */
 std::map<const std::string, const std::string> responses {
+    std::make_pair("blank=off", "BLANK=OFF"),
+    std::make_pair("blank=on", "BLANK=ON"),
+
     std::make_pair("pow=off", "POW=OFF"),
     std::make_pair("pow=on", "Block item"),  // error return
 
     // query
+    std::make_pair("blank=?", "BLANK=OFF"),
     std::make_pair("modelname=?", "MODELNAME=MW632ST"),
 };
 

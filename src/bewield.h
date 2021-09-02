@@ -28,11 +28,19 @@
 #include <utility>
 
 
-/* Map UI command string to protocol message. */
+/* Map UI command string to protocol message.
+ *
+ * The order of entries is the order commands are displayed with
+ * `--list-commands`, so keep to alphabetic order by pair.first.
+ */
 std::map<const std::string, const std::string> commands {
+    std::make_pair("blank_off", "blank=off"),
+    std::make_pair("blank_on", "blank=on"),
+
     std::make_pair("power_off", "pow=off"),
     std::make_pair("power_on", "pow=on"),
 
+    std::make_pair("query_blank", "blank=?"),
     std::make_pair("query_model", "modelname=?"),
 };
 
