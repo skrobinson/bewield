@@ -21,10 +21,16 @@ BIN := bin
 INC := include
 LIB := lib
 
+SOCAT := socat
+
 CC := g++
 CPPFLAGS := -I$(INC)
 CXXFLAGS := -g -Wall -std=c++17 -fext-numeric-literals
 LDFLAGS :=
+
+# Names for the two ends of a virtual serial port for test running.
+TEST_FAKE_PORT_A := port_a
+TEST_FAKE_PORT_B := port_b
 
 # Makefile helpers
 VPATH := src
@@ -33,7 +39,7 @@ VPATH := src
 
 .DELETE_ON_ERROR:
 
-.PHONY: bewield clean help realclean
+.PHONY: bewield clean help realclean serial-pipe
 
 $(BIN)/bewield: private LDFLAGS += $(LIB)/lineal.o
 
@@ -55,6 +61,10 @@ help:
 	@echo "  clean - remove ephemeral generated files (e.g. *.o)"
 	@echo "  help - show this help message"
 	@echo "  realclean - remove all generated files"
+	@echo "  serial-pipe - create linked virtual serial ports for testing"
 
 realclean: clean
 	$(RM) -r $(LIB)/*.{d,o}
+
+serial-pipe:
+	$(SOCAT) -d -d PTY,raw,echo=0,link=$(TEST_FAKE_PORT_A) PTY,raw,echo=0,link=$(TEST_FAKE_PORT_B)
