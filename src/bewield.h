@@ -50,6 +50,13 @@ std::map<const std::string, const std::string> commands {
     std::make_pair("query_blank", "blank=?"),
     std::make_pair("query_model", "modelname=?"),
     std::make_pair("query_power", "pow=?"),
+    std::make_pair("query_source", "sour=?"),
+
+    std::make_pair("source_dp", "sour=dp"),
+    std::make_pair("source_hdmi1", "sour=hdmi"),
+    std::make_pair("source_hdmi2", "sour=hdmi2"),
+    std::make_pair("source_rgb1", "sour=RGB"),
+    std::make_pair("source_rgb2", "sour=RGB2"),
 };
 
 

@@ -50,6 +50,14 @@ std::map<const std::string, const std::string> responses {
     std::make_pair("blank=?", "BLANK=OFF"),
     std::make_pair("modelname=?", "MODELNAME=MW632ST"),
     std::make_pair("pow=?", "POW=OFF"),
+    std::make_pair("sour=?", "SOUR=HDMI"),
+
+    // change source
+    std::make_pair("sour=dp", "SOUR=DP"),
+    std::make_pair("sour=hdmi", "SOUR=HDMI"),
+    std::make_pair("sour=hdmi2", "SOUR=HDMI2"),
+    std::make_pair("sour=RGB", "SOUR=RGB"),
+    std::make_pair("sour=RGB2", "Unsupported item"),  // error return
 };
 
 
