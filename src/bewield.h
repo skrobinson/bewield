@@ -18,6 +18,10 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+
+#ifndef BEWIELD_H
+#define BEWIELD_H true
+
 #include <map>
 #include <string>
 #include <utility>
@@ -42,3 +46,4 @@ const std::string SUFFIX { '#' };
 // default serial port
 const std::string DEFAULT_DEVICE { "/dev/ttyUSB0" };
 
+#endif
