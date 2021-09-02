@@ -42,6 +42,7 @@ std::map<const std::string, const std::string> commands {
 
     std::make_pair("query_blank", "blank=?"),
     std::make_pair("query_model", "modelname=?"),
+    std::make_pair("query_power", "pow=?"),
 };
 
 

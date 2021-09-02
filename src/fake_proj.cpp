@@ -42,6 +42,7 @@ std::map<const std::string, const std::string> responses {
     // query
     std::make_pair("blank=?", "BLANK=OFF"),
     std::make_pair("modelname=?", "MODELNAME=MW632ST"),
+    std::make_pair("pow=?", "POW=OFF"),
 };
 
 
