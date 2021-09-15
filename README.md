@@ -6,6 +6,17 @@ While bewield may work with other BenQ models, it has not been tested
 on any other projectors.  bewield is unlikely to work with any
 non-BenQ projectors.
 
+The computer is connected to the remotely controlled projector with a
+serial cable.  Most computers do not have the same style of serial
+connector as the projector.  One option is a USB-to-RS232 adapter;
+thus the bewield default port `/dev/ttyUSB0`.
+
+Projector <--> Null Modem Cable <--> USB-to-Serial Adapter <--> Computer
+
+In our case, the three-foot USB adapter and ten-foot null modem cable
+extend up to the mounted projector.  Total parts for cabling cost less
+than 15 USD.
+
 
 Help Output
 -----------
