@@ -14,14 +14,14 @@ Help Output
 Usage: bewield [options] command
 
 Positional arguments:
-command            	projector command [default: "query_model"]
+command             projector command [default: "query_model"]
 
 Optional arguments:
--h --help          	shows help message and exits
--v --version       	prints version information and exits
--l --list-commands 	list commands and exit [default: false]
--p --port          	serial port [default: "/dev/ttyUSB0"]
---verbose          	show detailed status [default: false]
+-h --help           shows help message and exits
+-v --version        prints version information and exits
+-l --list-commands  list commands and exit [default: false]
+-p --port           serial port [default: "/dev/ttyUSB0"]
+--verbose           show detailed status [default: false]
 ```
 
 
