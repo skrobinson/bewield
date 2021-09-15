@@ -32,8 +32,8 @@ A list of commands can be seen with the `--list-commands` argument.
 
 | Command            | Outcome                       |
 | :------------------| :---------------------------- |
-| asource_hdmi1      | Use HDML 1 audio source       |
-| asource_hdmi2      | Use HDML 2 audio source       |
+| asource_hdmi1      | Use HDMI 1 audio source       |
+| asource_hdmi2      | Use HDMI 2 audio source       |
 | audio_mute_off     | Unmute audio                  |
 | audio_mute_on      | Mute audio                    |
 | audio_vol_down     | Lower volume                  |
