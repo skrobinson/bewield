@@ -65,3 +65,19 @@ A list of commands can be seen with the `--list-commands` argument.
 | source_hdmi2       | Use HDMI 2 video source       |
 | source_rgb1        | Use RGB 1 video source        |
 | source_rgb2        | Use RGB 2 video source        |
+
+
+License
+-------
+
+Copyright 2021 Scottsdale Community College
+
+bewield is published under the GPL v2+ license.
+
+
+Acknowledgements
+----------------
+
+bewield incorporates and uses [Argument Parser for Modern C++](
+https://github.com/p-ranav/argparse) by Pranav Srinivas Kumar et al., licensed
+under the MIT License.  Thank you.
