@@ -67,6 +67,15 @@ A list of commands can be seen with the `--list-commands` argument.
 | source_rgb2        | Use RGB 2 video source        |
 
 
+Build
+-----
+
+From the root of the bewield source, `make bewield` creates `bin/bewield`.
+Use `bin/bewield` to control the connected projector.
+
+bewield targets C++17 and will likely require `g++` > 7.0 to build.
+
+
 License
 -------
 
