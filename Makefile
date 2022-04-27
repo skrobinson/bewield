@@ -1,5 +1,5 @@
 # Makefile for bewield
-# Copyright 2021 Scottsdale Community College
+# Copyright 2021,2022 Scottsdale Community College
 # Author: Sean Robinson <sean.robinson@scottsdalecc.edu>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -44,7 +44,7 @@ VPATH := src
 $(BIN)/bewield: private LDFLAGS += $(LIB)/lineal.o
 
 $(BIN)/bewield: bewield.cpp bewield.h $(INC)/argparse.hpp $(LIB)/lineal.o
-	$(CC) -static $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) $< -o $@
+	$(CC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) $< -o $@
 
 $(BIN)/fake_proj: private LDFLAGS += $(LIB)/lineal.o
 
@@ -70,9 +70,14 @@ help:
 	@echo "  help - show this help message"
 	@echo "  realclean - remove all generated files"
 	@echo "  serial-pipe - create linked virtual serial ports for testing"
+	@echo "  static-bewield - build statically linked bewield"
 
 realclean: clean
 	$(RM) -r $(LIB)/*.{d,o}
 
 serial-pipe:
 	$(SOCAT) -d -d PTY,raw,echo=0,link=$(TEST_FAKE_PORT_A) PTY,raw,echo=0,link=$(TEST_FAKE_PORT_B)
+
+static-%: CXXFLAGS += -static
+
+static-%: % ;
